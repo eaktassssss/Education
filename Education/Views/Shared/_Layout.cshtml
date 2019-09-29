@@ -1,42 +1,85 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Education</title>
+    <link href="~/Content/Theme/template/vendors/iconfonts/simple-line-icon/css/simple-line-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/Theme/template/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/Content/Theme/template/vendors/css/vendor.bundle.addons.css">
+    <link href="~/Content/Theme/template/css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/Theme/template/images/favicon.png" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="container-scroller">
+        <nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
+            <div class="nav-top flex-grow-1">
+                <div class="container d-flex flex-row h-100">
+
+                    <div class="text-center navbar-brand-wrapper d-flex align-items-top">
+                        <a class="navbar-brand brand-logo" href="index-2.html"><img src="~/Content/Theme/template/images/logo.svg" alt="logo" /></a>
+                        <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+                    </div>
+                    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                        <form class="search-field" action="#">
+                            <div class="form-group mb-0">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="search">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="icon-magnifier"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav navbar-nav-right mr-0">
+                           
+                             
+                            <li class="nav-item nav-profile">
+                                <a class="nav-link" href="#">
+                                    <span class="nav-profile-text">Hello Andre Rivera</span>
+                                    <img src="~/Content/Theme/template/images/faces/face1.jpg" class="rounded-circle" alt="profile" />
+                                </a>
+                            </li>
+                        </ul>
+                        <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                            <span class="icon-menu text-white"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div class="nav-bottom">
+                <div class="container">
+                    <ul class="nav page-navigation">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Add","Education")" class="nav-link"><i class="link-icon icon-screen-desktop"></i><span class="menu-user">Yeni Öğrenci</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+                <footer class="footer">
+                    <div class="w-100 clearfix">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="http://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="icon-heart text-danger"></i></span>
+                    </div>
+                </footer>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <script src="~/Content/Theme/template/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/Content/Theme/template/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="~/Content/Theme/template/js/template.js"></script>
+    <script src="~/Content/Theme/template/js/template.js"></script>
+    <script src="~/Content/Theme/template/js/dashboard.js"></script>
+    <script src="~/Content/Theme/template/js/todolist.js"></script>
+    <script src="~/Content/Theme/template/js/data-table.js"></script>
 </body>
+
 </html>

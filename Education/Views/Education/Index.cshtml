@@ -1,0 +1,72 @@
+﻿@using Education.Models.Dto.Student;
+@model IEnumerable<StudentListViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Öğrenciler Listesi</h4>
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table id="order-listing" class="table">
+                    <thead>
+                        <tr>
+
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>Tc Kimilk No</th>
+                            <th>Cep Telefon</th>
+                            <th>Okul Numarası</th>
+                            <th>Sınıf</th>
+                            <th>Durum</th>
+                            <th>İşlem Tarihi</th>
+                            <th>Kaldır</th>
+                            <th>Düzenle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (StudentListViewModel student in Model)
+                        {
+                            <tr>
+
+                                <td>@student.Name</td>
+                                <td>@student.LastName</td>
+                                <td>@student.IdentityNumber</td>
+                                <td>@student.PhoneNumber</td>
+                                <td>@student.SchoolNumber</td>
+                                <td>@student.ClassName</td>
+                                @switch (student.IsDeleted)
+                                {
+                                    case true:
+                                        <td>
+                                            <label class="badge badge-danger">PASİF</label>
+                                        </td>
+                                        break;
+                                    case false:
+                                        <td>
+                                            <label class="badge badge-success">AKTİF</label>
+                                        </td>
+                                        break;
+                                }
+                                <td>@student.CreateDate.ToString("d")</td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "Education", new {studentId=student.Id})" class="btn btn-danger btn-sm">
+                                        Kaldır
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="@Url.Action("Update", "Education", new {studentId=student.Id})" class="btn btn-primary btn-sm">
+                                        Düzenle
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

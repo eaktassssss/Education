@@ -1,0 +1,59 @@
+﻿@using System.Collections
+@using Education.Models.Dto.Student;
+@model StudentViewModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Öğrenci Girişi</h4>
+            @*<p class="card-description">
+                    Basic form layout
+                </p>*@
+           @{
+               var routeValue = new RouteValueDictionary();
+               routeValue.Add("key", "100000");
+
+           }
+            @using (Html.BeginForm("Add","Education",routeValue))
+            {
+                <div class="row col-md-12">
+                    <div class="form-group col-md-4">
+                        <label>Ad</label>
+                        @Html.TextBoxFor(student => student.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Soyad</label>
+                        @Html.TextBoxFor(student => student.LastName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Tc Kimlik Numarası</label>
+                        @Html.TextBoxFor(student => student.IdentityNumber, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row col-md-12">
+
+                    <div class="form-group col-md-4">
+                        <label>Cep Telefon</label>
+                        @Html.TextBoxFor(student => student.PhoneNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Okul Numarası</label>
+                        @Html.TextBoxFor(student => student.SchoolNumber, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Sınıf</label>
+                        @Html.DropDownListFor(student => student.ClassId, new SelectList((IEnumerable)TempData["studentClasses"], "Id", "Name"), "Seçiniz", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-success">Kaydet</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
