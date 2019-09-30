@@ -22,23 +22,21 @@
                         <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="images/logo-mini.svg" alt="logo" /></a>
                     </div>
                     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                        <form class="search-field" action="#">
-                            <div class="form-group mb-0">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="search">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text"><i class="icon-magnifier"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                         <ul class="navbar-nav navbar-nav-right mr-0">
-                           
-                             
                             <li class="nav-item nav-profile">
                                 <a class="nav-link" href="#">
                                     <span class="nav-profile-text">Hello Andre Rivera</span>
-                                    <img src="~/Content/Theme/template/images/faces/face1.jpg" class="rounded-circle" alt="profile" />
+                                   
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav navbar-nav-right mr-0">
+
+
+                            <li class="nav-item nav-profile">
+                                <a class="nav-link" href="@Url.Action("Logout", "Account")">
+                                    <span class="nav-profile-text">Çıkış Yap</span>
+
                                 </a>
                             </li>
                         </ul>
@@ -54,6 +52,7 @@
                         <li class="nav-item">
                             <a href="@Url.Action("Add","Education")" class="nav-link"><i class="link-icon icon-screen-desktop"></i><span class="menu-user">Yeni Öğrenci</span></a>
                         </li>
+                       
                     </ul>
                 </div>
             </div>

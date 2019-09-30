@@ -27,5 +27,6 @@ namespace Education.Models.Context
     
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

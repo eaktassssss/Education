@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Education.Filters;
 using Education.Models.Context;
 using Education.Models.Dto.Student;
 
 namespace Education.Controllers
 {
+    [CustomAuthenticationFilter]
     public class EducationController : Controller
     {
  
