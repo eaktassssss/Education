@@ -34,6 +34,7 @@ namespace Education.Controllers
                     if (user!=null)
                     {
                        FormsAuthentication.SetAuthCookie(user.UserName,true);
+                       Session["LoginUser"] = viewModel;
                        return RedirectToAction("Index", "Education");
                     }
                     else
@@ -56,5 +57,9 @@ namespace Education.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account");
         }
+
+
+       
+
     }
 }

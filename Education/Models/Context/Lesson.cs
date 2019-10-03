@@ -12,20 +12,18 @@ namespace Education.Models.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class Lesson
     {
-        public int Id { get; set; }
-        public int ClassId { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string IdentityNumber { get; set; }
-        public string PhoneNumber { get; set; }
-        public string SchoolNumber { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public bool IsDeleted { get; set; }
-        public string Email { get; set; }
-        public int Age { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Lesson()
+        {
+            this.Teachers = new HashSet<Teacher>();
+        }
     
-        public virtual Class Class { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Teacher> Teachers { get; set; }
     }
 }

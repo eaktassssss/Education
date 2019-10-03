@@ -1,8 +1,8 @@
-﻿@using Education.Models.Dto.Student;
-@model IEnumerable<StudentListViewModel>
+﻿@using Education.Models.Context
+@model IEnumerable<Education.Models.Context.Teacher>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+ 
 }
 <div class="card">
     <div class="card-body">
@@ -17,25 +17,25 @@
                             <th>Cep Telefon</th>
                             <th>Email</th>
                             <th>Yaş</th>
-                            <th>Okul Numarası</th>
-                            <th>Sene</th>
+                            <th>Ders</th>
+                            <th>İzin Günü</th>
                             <th>Durum</th>
                             <th>Kaldır</th>
                             <th>Düzenle</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (StudentListViewModel student in Model)
+                        @foreach (Teacher teacher in Model)
                         {
                             <tr>
-                                <td>@(student.Name + " " + student.LastName)</td>
-                                <td>@student.IdentityNumber</td>
-                                <td>@student.PhoneNumber</td>
-                                <td>@student.Email</td>
-                                <td>@student.Age</td>
-                                <td>@student.SchoolNumber</td>
-                                <td>@student.ClassName</td>
-                                @switch (student.IsDeleted)
+                                <td>@(teacher.Name + " " + teacher.SurName)</td>
+                                <td>@teacher.IdentityNumber</td>
+                                <td>@teacher.PhoneNumber</td>
+                                <td>@teacher.Email</td>
+                                <td>@teacher.Age</td>
+                                <td>@teacher.Lesson.Name</td>
+                                <td>@teacher.Day.Name</td>
+                                @switch (teacher.IsDeleted)
                                 {
                                     case true:
                                         <td>
@@ -49,13 +49,13 @@
                                         break;
                                 }
                                 <td>
-                                    <a href="@Url.Action("Delete", "Education", new {studentId=student.Id})" class="btn btn-danger btn-sm">
+                                    <a href="@Url.Action("Delete", "Education", new {teacherId=teacher.Id})" class="btn btn-danger btn-sm">
                                         Kaldır
                                     </a>
                                 </td>
 
                                 <td>
-                                    <a href="@Url.Action("Update", "Education", new {studentId=student.Id})" class="btn btn-primary btn-sm">
+                                    <a href="@Url.Action("Update", "Education", new {teacherId=teacher.Id})" class="btn btn-primary btn-sm">
                                         Düzenle
                                     </a>
                                 </td>
@@ -68,4 +68,3 @@
         </div>
     </div>
 </div>
-

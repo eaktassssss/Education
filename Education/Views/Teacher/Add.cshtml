@@ -1,0 +1,196 @@
+﻿@using Education.Common
+@using Education.Models.Dto.Teacher
+@using Education.Models.Dto.Lesson
+@using Education.Models.Dto.Days
+@model Tuple<TeacherViewModel, List<LessonViewModel>, List<DayViewModel>>
+@*@using Education.Common
+    @model Education.Models.Dto.Base.BaseViewModel*@
+@{
+    ViewBag.Title = "Add";
+
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@{ var options = new AjaxOptions()
+    {
+        Url = Url.Action("Add", "Teacher"),
+        AllowCache = false,
+        HttpMethod = "POST",
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+    };}
+<style>
+    .errorMessage {
+        color: red;
+        font-weight: bold;
+        font-size: 10px;
+    }
+</style>
+
+@*Yöntem Tuple View*@
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Öğretmen Girişi</h4>
+            @using (Ajax.BeginForm(options))
+            {
+
+                @Html.AntiForgeryToken()
+                <div class="row col-md-12">
+                    <div class="form-group col-md-3">
+                        <label>Ad</label>
+                        @Html.TextBoxFor(teacher => teacher.Item1.Name, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Item1.Name)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Soyad</label>
+                        @Html.TextBoxFor(teacher => teacher.Item1.SurName, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Item1.SurName)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Tc Kimlik Numarası</label>
+                        @Html.TextBoxFor(teacher => teacher.Item1.IdentityNumber, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Item1.IdentityNumber)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Telefon Numarası</label>
+                        @Html.TextBoxFor(teacher => teacher.Item1.PhoneNumber, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Item1.PhoneNumber)
+                        </span>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group col-md-3">
+                        <label>Email</label>
+                        @Html.TextBoxFor(teacher => teacher.Item1.Email, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Item1.Email)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Yaş</label>
+                        @Html.TextBoxFor(teacher => teacher.Item1.Age, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Item1.Age)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Verdiği Ders</label>
+                        @Html.DropDownListFor(teacher => teacher.Item1.LessonId, new SelectList(Model.Item2, "Id", "Name"), "Seçiniz", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>İzin Günü</label>
+                        @Html.DropDownListFor(teacher => teacher.Item1.DayOffId, new SelectList(Model.Item3, "Id", "Name"), "Seçiniz", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group col-md-12">
+                        @Html.Button1(new ButtonOptions() { Id = "btnSend2", Name = "btnSend2", Class = "btn btn-success", Type = ButtonType.submit, Text = "Kaydet" })
+                    </div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@*Yöntem Model View*@
+
+@*<div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Öğretmen Girişi</h4>
+
+                @Html.AntiForgeryToken()
+                <div class="row col-md-12">
+                    <div class="form-group col-md-3">
+                        <label>Ad</label>
+                        @Html.TextBoxFor(teacher => teacher.Teacher.Name, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Teacher.Name)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Soyad</label>
+                        @Html.TextBoxFor(teacher => teacher.Teacher.SurName, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Teacher.SurName)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Tc Kimlik Numarası</label>
+                        @Html.TextBoxFor(teacher => teacher.Teacher.IdentityNumber, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Teacher.IdentityNumber)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Tc Kimlik Numarası</label>
+                        @Html.TextBoxFor(teacher => teacher.Teacher.PhoneNumber, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Teacher.PhoneNumber)
+                        </span>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group col-md-3">
+                        <label>Email</label>
+                        @Html.TextBoxFor(teacher => teacher.Teacher.Email, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Teacher.Email)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Yaş</label>
+                        @Html.TextBoxFor(teacher => teacher.Teacher.Age, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Teacher.Age)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Sınıf</label>
+                        @Html.DropDownListFor(teacher => teacher.Teacher.LessonId, new SelectList(Model.Lessons, "Id", "Name"), "Seçiniz", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Sınıf</label>
+                        @Html.DropDownListFor(teacher => teacher.Teacher.DayOffId, new SelectList(Model.Days, "Id", "Name"), "Seçiniz", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group col-md-12">
+                        @Html.Button1(new ButtonOptions() { Id = "btnSend1", Name = "btnSend1", Class = "btn btn-success", Type = ButtonType.button, Text = "Kaydet" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>*@
+
+<script type="text/javascript">
+    function OnSuccess(response) {
+
+        if (response.resultType == true) {
+            alert(response.result);
+        } else {
+            alert(response.result);
+        }
+    }
+    function OnFailure(response) {
+        alert(response.result);
+    }
+</script>

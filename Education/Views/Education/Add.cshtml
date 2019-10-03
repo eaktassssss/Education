@@ -1,59 +1,99 @@
 ﻿@using System.Collections
+@using Education.Common
 @using Education.Models.Dto.Student;
 @model StudentViewModel
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .errorMessage {
+        color: red;
+        font-weight: bold;
+        font-size: 10px;
+    }
+</style>
 <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Yeni Öğrenci Girişi</h4>
-            @*<p class="card-description">
-                    Basic form layout
-                </p>*@
-           @{
-               var routeValue = new RouteValueDictionary();
-               routeValue.Add("key", "100000");
+            <p class="card-description">
+                @*@Html.ValidationSummary();*@
+            </p>
+            @{
+                var routeValue = new RouteValueDictionary();
+                routeValue.Add("key", "100000");
 
-           }
-            @using (Html.BeginForm("Add","Education",routeValue))
+            }
+            @using (Html.BeginForm("Add", "Education", routeValue))
             {
+                @Html.AntiForgeryToken()
                 <div class="row col-md-12">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label>Ad</label>
                         @Html.TextBoxFor(student => student.Name, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Name)
+                        </span>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label>Soyad</label>
                         @Html.TextBoxFor(student => student.LastName, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.LastName)
+                        </span>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label>Tc Kimlik Numarası</label>
                         @Html.TextBoxFor(student => student.IdentityNumber, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.IdentityNumber)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Cep Telefon</label>
+                        @Html.TextBoxFor(student => student.PhoneNumber, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.PhoneNumber)
+                        </span>
+
                     </div>
                 </div>
                 <div class="row col-md-12">
-
-                    <div class="form-group col-md-4">
-                        <label>Cep Telefon</label>
-                        @Html.TextBoxFor(student => student.PhoneNumber, new { @class = "form-control" })
+                    <div class="form-group col-md-3">
+                        <label>Email</label>
+                        @Html.TextBoxFor(student => student.Email, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Email)
+                        </span>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
+                        <label>Yaş</label>
+                        @Html.TextBoxFor(student => student.Age, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.Age)
+                        </span>
+                    </div>
+                    <div class="form-group col-md-3">
                         <label>Okul Numarası</label>
                         @Html.TextBoxFor(student => student.SchoolNumber, new { @class = "form-control" })
+                        <span class="errorMessage">
+                            @Html.ValidationMessageFor(message => message.SchoolNumber)
+                        </span>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label>Sınıf</label>
                         @Html.DropDownListFor(student => student.ClassId, new SelectList((IEnumerable)TempData["studentClasses"], "Id", "Name"), "Seçiniz", new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="row col-md-12">
                     <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-success">Kaydet</button>
+                        @*<button type="submit" class="btn btn-success">Kaydet</button>*@
+                        @Html.Button1(new ButtonOptions() { Id = "btnSend", Name = "btnSend", Class = "btn btn-success", Type = ButtonType.submit, Text = "Kaydet" })
                     </div>
                 </div>
             }
         </div>
     </div>
+
 </div>

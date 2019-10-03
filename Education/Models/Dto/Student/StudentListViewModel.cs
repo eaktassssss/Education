@@ -16,5 +16,7 @@ namespace Education.Models.Dto.Student
         public string SchoolNumber { get; set; }
         public bool IsDeleted { get; set; }
         public string IdentityNumber { get; set; }
+        public string Email { get; set; }
+        public int Age { get; set; }
     }
 }

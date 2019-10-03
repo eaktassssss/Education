@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "ErrorPageTest";
+
+}
+
+<h2>
+    @using (Html.BeginForm("ErrorPageTest", "Education", FormMethod.Post))
+    {
+        <input name="customId" id="customId" />
+        <button type="submit">KAYDET</button>
+    }
+</h2>
+

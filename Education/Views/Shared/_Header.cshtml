@@ -1,0 +1,59 @@
+﻿@using Education.Models.Dto.Account
+<nav class="navbar horizontal-layout col-lg-12 col-12 p-0">
+    <div class="nav-top flex-grow-1">
+        <div class="container d-flex flex-row h-100">
+
+            <div class="text-center navbar-brand-wrapper d-flex align-items-top">
+                <a class="navbar-brand brand-logo" href="index-2.html"><img src="~/Content/Theme/template/images/logo.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index-2.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <ul class="navbar-nav navbar-nav-right mr-0">
+                    <li class="nav-item nav-profile">
+                        <a class="nav-link" href="#">
+                            <span class="nav-profile-text" style="font-weight: bold; font-size: 15px;color: white">
+                                @*@{
+                                   LoginViewModel user  =HttpContext.Current.Session["LoginUser"] as LoginViewModel;
+                                }
+                                @user.UserName*@
+                            </span>
+
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right mr-0">
+
+
+                     
+                </ul>
+                <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu text-white"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="nav-bottom">
+        <div class="container">
+            <ul class="nav page-navigation">
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Add", "Education")" class="nav-link"><i class="link-icon icon-disc"></i><span class="menu-title">Öğrenci Ekle</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Education")" class="nav-link"><i class="link-icon icon-disc"></i><span class="menu-title">Öğrenci Listesi</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Add", "Teacher")" class="nav-link"><i class="link-icon icon-disc"></i><span class="menu-title">Öğretmen Ekle</span></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Teacher")" class="nav-link"><i class="link-icon icon-disc"></i><span class="menu-title">Öğretmen Listesi</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Logout", "Account")" class="nav-link"><i class="link-icon icon-disc"></i><span class="menu-title">Çıkış Yap</span></a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

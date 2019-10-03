@@ -1,21 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
 using Education.Filters;
 using Education.Models.Context;
 using Education.Models.Dto.Student;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Education.Controllers
 {
     [CustomAuthenticationFilter]
+
     public class EducationController : Controller
     {
- 
+        /*
+         * Bundle  işlemleri  için Microsoft.AspNet.Optimization kurulması
+         */
+
         [HttpGet]
+        
         public ActionResult Index()
         {
             /*
@@ -26,7 +28,7 @@ namespace Education.Controllers
                 var students = context.Students.Where(x=> x.IsDeleted==false).Include("Class").Select(x => new StudentListViewModel()
                 {
                      Id = x.Id,LastName = x.LastName,SchoolNumber = x.SchoolNumber, IsDeleted = x.IsDeleted,
-                      Name = x.Name,PhoneNumber = x.PhoneNumber,ClassName =x.Class.Name,
+                      Name = x.Name,PhoneNumber = x.PhoneNumber,ClassName =x.Class.Name,Email = x.Email,Age = x.Age,
                       CreateDate = x.CreateDate,IdentityNumber = x.IdentityNumber
                 }).ToList();
                 return View(students);
@@ -34,6 +36,7 @@ namespace Education.Controllers
         }
 
         [HttpGet]
+       
         public ActionResult Add()
         {
             /*
@@ -43,7 +46,7 @@ namespace Education.Controllers
              * Mvc Html Helper kullanımı
              * Üzerine konuş
              */
-            using (var context =new EducationContext())
+            using (var context = new EducationContext())
             {
                 ViewBag.studentClasses = context.Classes.ToList();
                 TempData["studentClasses"] = context.Classes.ToList();
@@ -53,28 +56,38 @@ namespace Education.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(StudentViewModel viewModel)
         {
             /*
-             * RouteValueDictionary 
+             * RouteValueDictionary
+             * DatabaseFirst
              */
             try
             {
-                using (var context =new EducationContext())
+                using (var context = new EducationContext())
                 {
+                    TempData["studentClasses"] = context.Classes.ToList();
                     if (!ModelState.IsValid)
                         return View(viewModel);
                     else
                     {
                         var student = new Student()
                         {
-                            PhoneNumber = viewModel.PhoneNumber,ClassId = viewModel.ClassId,IdentityNumber = viewModel.IdentityNumber,
-                            LastName = viewModel.LastName,Name = viewModel.Name,CreateDate = viewModel.CreateDate,SchoolNumber = viewModel.SchoolNumber,
-                            IsDeleted = viewModel.IsDeleted
+                            PhoneNumber = viewModel.PhoneNumber,
+                            ClassId = viewModel.ClassId,
+                            IdentityNumber = viewModel.IdentityNumber,
+                            LastName = viewModel.LastName,
+                            Name = viewModel.Name,
+                            CreateDate = viewModel.CreateDate,
+                            SchoolNumber = viewModel.SchoolNumber,
+                            IsDeleted = viewModel.IsDeleted,
+                            Age = viewModel.Age,
+                            Email = viewModel.Email
                         };
                         context.Students.Add(student);
                         context.SaveChanges();
-                        return RedirectToAction("Index","Education");
+                        return RedirectToAction("Index", "Education");
                     }
                 }
             }
@@ -86,6 +99,7 @@ namespace Education.Controllers
 
 
         [HttpGet]
+        
         public ActionResult Update(int studentId)
         {
             try
@@ -106,20 +120,23 @@ namespace Education.Controllers
                         LastName = student.LastName,
                         Name = student.Name,
                         SchoolNumber = student.SchoolNumber,
-                        Id = student.Id
+                        Id = student.Id,
+                        Age = student.Age,
+                        Email = student.Email
                     };
                     return View(model);
                 }
             }
-            catch  
+            catch
             {
                 return View("Error");
             }
-     
+
         }
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(StudentViewModel viewModel)
         {
             try
@@ -131,8 +148,8 @@ namespace Education.Controllers
                         return View(viewModel);
                     }
 
-                    var student = context.Students?.FirstOrDefault(s=> s.Id==viewModel.Id && s.IsDeleted==false);
-                    if (student==null)
+                    var student = context.Students?.FirstOrDefault(s => s.Id == viewModel.Id && s.IsDeleted == false);
+                    if (student == null)
                     {
                         return View("Error");
                     }
@@ -144,8 +161,32 @@ namespace Education.Controllers
                     student.Name = viewModel.Name;
                     student.SchoolNumber = viewModel.SchoolNumber;
                     student.Id = viewModel.Id;
+                    student.Email = viewModel.Email; student.Age = viewModel.Age;
                     context.SaveChanges();
-                    return RedirectToAction("Index","Education");
+                    return RedirectToAction("Index", "Education");
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int studentId)
+        {
+            try
+            {
+                using (var context = new EducationContext())
+                {
+                    var student = context.Students?.FirstOrDefault(s => s.Id == studentId && s.IsDeleted == false);
+                    if (student == null)
+                    {
+                        return View("Error");
+                    }
+                    student.IsDeleted = true;
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
                 }
             }
             catch
@@ -155,28 +196,24 @@ namespace Education.Controllers
         }
 
 
-
         [HttpGet]
-        public ActionResult Delete(int studentId)
+        public ActionResult ErrorPageTest()
         {
-            try
-            {
-                using (var context =new EducationContext())
+            return View();
+        }
+
+        [HttpPost]
+        [CustomExceptionFilter]
+        public ActionResult ErrorPageTest(int customId)
+        { 
+                using (var context = new EducationContext())
                 {
-                    var student = context.Students?.FirstOrDefault(s=> s.Id==studentId && s.IsDeleted==false);
-                    if (student==null)
-                    {
-                        return View("Error");
-                    }
-                    student.IsDeleted = true;
+                    var student = new Student();
+                    student.Id = customId;
+                    context.Students.Add(student);
                     context.SaveChanges();
-                    return  RedirectToAction("Index");
+                    return RedirectToAction("Index");
                 }
-            }
-            catch
-            {
-                return View("Error");
-            }
         }
     }
 }

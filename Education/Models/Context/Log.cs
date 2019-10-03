@@ -12,20 +12,13 @@ namespace Education.Models.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class Log
     {
         public int Id { get; set; }
-        public int ClassId { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string IdentityNumber { get; set; }
-        public string PhoneNumber { get; set; }
-        public string SchoolNumber { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public bool IsDeleted { get; set; }
-        public string Email { get; set; }
-        public int Age { get; set; }
-    
-        public virtual Class Class { get; set; }
+        public string ExceptionMessage { get; set; }
+        public string UserName { get; set; }
+        public string ActionName { get; set; }
+        public string ControllerName { get; set; }
+        public System.DateTime CreatedDate { get; set; }
     }
 }

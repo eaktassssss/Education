@@ -134,22 +134,40 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\Extensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Filters\CustomAuthenticationFilter.cs" />
+    <Compile Include="Filters\CustomExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\Class.cs">
       <DependentUpon>EducationContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Context\Day.cs">
+      <DependentUpon>EducationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Lesson.cs">
+      <DependentUpon>EducationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Log.cs">
+      <DependentUpon>EducationContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Context\Student.cs">
+      <DependentUpon>EducationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Teacher.cs">
       <DependentUpon>EducationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\User.cs">
       <DependentUpon>EducationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dto\Account\LoginViewModel.cs" />
+    <Compile Include="Models\Dto\Base\BaseViewModel.cs" />
+    <Compile Include="Models\Dto\Days\DayViewModel.cs" />
+    <Compile Include="Models\Dto\Lesson\LessonViewModel.cs" />
     <Compile Include="Models\Dto\Student\StudentListViewModel.cs" />
     <Compile Include="Models\Context\EducationContext.Context.cs">
       <AutoGen>True</AutoGen>
@@ -167,6 +185,7 @@
       <DependentUpon>EducationContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Dto\Student\StudentViewModel.cs" />
+    <Compile Include="Models\Dto\Teacher\TeacherViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -925,16 +944,20 @@
       <DependentUpon>EducationContext.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Floor.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Teacher.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -950,6 +973,11 @@
     <Content Include="Views\Education\Add.cshtml" />
     <Content Include="Views\Education\Update.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Education\ErrorPageTest.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

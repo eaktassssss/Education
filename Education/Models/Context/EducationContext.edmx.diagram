@@ -9,6 +9,12 @@
         <EntityTypeShape EntityType="EducationModel.Student" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="EducationModel.User" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="EducationModel.FK_Student_StudentClass" />
+        <EntityTypeShape EntityType="EducationModel.Log" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EducationModel.Day" Width="1.5" PointX="5.375" PointY="8" />
+        <EntityTypeShape EntityType="EducationModel.Lesson" Width="1.5" PointX="5.375" PointY="5" />
+        <EntityTypeShape EntityType="EducationModel.Teacher" Width="1.5" PointX="7.625" PointY="4" />
+        <AssociationConnector Association="EducationModel.FK_Table_1_Days" />
+        <AssociationConnector Association="EducationModel.FK_Table_1_Lessons" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
