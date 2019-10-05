@@ -215,5 +215,27 @@ namespace Education.Controllers
                     return RedirectToAction("Index");
                 }
         }
+
+        public PartialViewResult GetPartialViewResult()
+        {
+            using (var context = new EducationContext())
+            {
+                var students = context.Students.Where(x => x.IsDeleted == false).Include("Class").Select(x => new StudentListViewModel()
+                {
+                    Id = x.Id,
+                    LastName = x.LastName,
+                    SchoolNumber = x.SchoolNumber,
+                    IsDeleted = x.IsDeleted,
+                    Name = x.Name,
+                    PhoneNumber = x.PhoneNumber,
+                    ClassName = x.Class.Name,
+                    Email = x.Email,
+                    Age = x.Age,
+                    CreateDate = x.CreateDate,
+                    IdentityNumber = x.IdentityNumber
+                }).ToList();
+                return PartialView("ListPartialView",students);
+            }
+        }
     }
 }

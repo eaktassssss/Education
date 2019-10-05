@@ -136,12 +136,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Filters\CustomAuthenticationFilter.cs" />
     <Compile Include="Filters\CustomExceptionFilter.cs" />
+    <Compile Include="Filters\CustomFilter.cs" />
+    <Compile Include="Filters\CustomFilterA.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Category.cs">
+      <DependentUpon>EducationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\Class.cs">
       <DependentUpon>EducationContext.tt</DependentUpon>
@@ -153,6 +160,9 @@
       <DependentUpon>EducationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\Log.cs">
+      <DependentUpon>EducationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Context\Product.cs">
       <DependentUpon>EducationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Context\Student.cs">
@@ -168,6 +178,7 @@
     <Compile Include="Models\Dto\Base\BaseViewModel.cs" />
     <Compile Include="Models\Dto\Days\DayViewModel.cs" />
     <Compile Include="Models\Dto\Lesson\LessonViewModel.cs" />
+    <Compile Include="Models\Dto\Product\ProductListViewModel.cs" />
     <Compile Include="Models\Dto\Student\StudentListViewModel.cs" />
     <Compile Include="Models\Context\EducationContext.Context.cs">
       <AutoGen>True</AutoGen>
@@ -978,9 +989,13 @@
     <Content Include="Views\Education\ErrorPageTest.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\Add.cshtml" />
+    <Content Include="Views\Teacher\Update.cshtml" />
+    <Content Include="Views\Cache\GetProductsList.cshtml" />
+    <Content Include="Views\Shared\ListPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Filter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

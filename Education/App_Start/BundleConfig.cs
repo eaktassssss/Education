@@ -33,8 +33,7 @@ namespace Education
                 "~/Content/Theme/template/vendors/js/vendor.bundle.base.js",
                 "~/Content/Theme/template/vendors/js/vendor.bundle.addons.js",
                 "~/Content/Theme/template/js/template.js",
-                "~/Content/Theme/template/js/data-table.js",
-                "~/Scripts/jquery.unobtrusive-ajax.min.js"
+                "~/Content/Theme/template/js/data-table.js"
                 ));
             bundles.Add(new ScriptBundle("~/custom/js").Include(
                 "~/Scripts/Teacher.js",

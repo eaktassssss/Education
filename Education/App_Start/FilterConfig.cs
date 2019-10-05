@@ -9,6 +9,7 @@ namespace Education
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new CustomExceptionFilter());
+            filters.Add(new CustomFilterA());
         }
     }
 }

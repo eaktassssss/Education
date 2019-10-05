@@ -1,8 +1,8 @@
-﻿@using Education.Models.Context
+﻿@using Education.Common
+@using Education.Models.Context
 @model IEnumerable<Education.Models.Context.Teacher>
 @{
     ViewBag.Title = "Index";
- 
 }
 <div class="card">
     <div class="card-body">
@@ -49,13 +49,10 @@
                                         break;
                                 }
                                 <td>
-                                    <a href="@Url.Action("Delete", "Education", new {teacherId=teacher.Id})" class="btn btn-danger btn-sm">
-                                        Kaldır
-                                    </a>
+                                    <button type="button" class="btn btn-danger btn-sm" id="btnteacherdelete" name="btnteacherdelete" data-id="@teacher.Id">Kaldır</button>
                                 </td>
-
                                 <td>
-                                    <a href="@Url.Action("Update", "Education", new {teacherId=teacher.Id})" class="btn btn-primary btn-sm">
+                                    <a href="@Url.Action("Update", "Teacher", new {teacherId=teacher.Id})" class="btn btn-primary btn-sm">
                                         Düzenle
                                     </a>
                                 </td>

@@ -51,8 +51,6 @@ namespace Education.Common
             Class = "btn btn-default";
         }
     }
-
-
     public enum ButtonType
     {
         button=0,submit=1,reset=2

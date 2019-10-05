@@ -1,11 +1,5 @@
 ﻿@using Education.Models.Dto.Student;
 @model IEnumerable<StudentListViewModel>
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<button type="button" id="get" class="btn btn-primary btn-sm">Partial Liste Getir</button>
-<br/><br/>
 <div class="card">
     <div class="card-body">
         <h4 class="card-title">Öğrenciler Listesi</h4>
@@ -70,21 +64,3 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-    $("#get").click(function () {
-        $.ajax({
-            url: '/Education/GetPartialViewResult',
-            type: 'GET',
-            success: function (response) {
-                 
-                    alert(response);
-                    console.log(response);
-                 
-            },
-            error: function ( ) {
-                
-            }
-        });
-    })
-</script>

@@ -32,5 +32,7 @@ namespace Education.Models.Context
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<Lesson> Lessons { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

@@ -1,16 +1,16 @@
-﻿$("#btnSend1").click(function () {
+﻿$("#btnUpdate").click(function () {
     var teacher = {
-        Name: $("#Teacher_Name").val(), SurName: $("#Teacher_SurName").val(), IdentityNumber: $("#Teacher_IdentityNumber").val(), PhoneNumber: $("#Teacher_PhoneNumber").val(), Email: $("#Teacher_Email").val(),
+        Id: $("#Teacher_Id").val(), Name: $("#Teacher_Name").val(), SurName: $("#Teacher_SurName").val(), IdentityNumber: $("#Teacher_IdentityNumber").val(), PhoneNumber: $("#Teacher_PhoneNumber").val(), Email: $("#Teacher_Email").val(),
         Age: $("#Teacher_Age").val(), LessonId: $("#Teacher_LessonId").val(), DayOffId: $("#Teacher_DayOffId").val()
     };
     $.ajax({
-        url: '/Teacher/Add',
+        url: '/Teacher/Update',
         type: 'POST',
         data: teacher,
         success: function (response) {
             if (response.resultType == true) {
                 alert(response.result);
-                Clear();
+                window.location = "/Teacher/Index";
             } else {
                 alert(response.result);
             }
@@ -21,10 +21,31 @@
     });
 });
 
-function Clear() {
-    $("#Teacher_PhoneNumber").val('');
-    $("#Teacher_Name").val('');
-    $("#Teacher_SurName").val('');
-    $("#Teacher_IdentityNumber").val('');
-    $("#Teacher_Email").val('');
-}
+$(document).on("click", "#btnteacherdelete",
+    function () {
+        var result = confirm("Emin misiniz?");
+        if (result) {
+            var tr = $(this).closest('tr');
+            var id = $(this).data("id");
+            if (id == "" && id == undefined) {
+                console.log("id bulunamadı hatası");
+            } else {
+                $.ajax({
+                    url: '/Teacher/Delete',
+                    type: 'POST',
+                    data: { teacherId: id },
+                    success: function (response) {
+                        if (response.resultType == true) {
+                            tr.remove();
+                        } else {
+                            alert(response.result);
+                        }
+                    },
+                    error: function (response) {
+                        alert(response.result);
+                    }
+                });
+            }
+        }
+    });
+ 

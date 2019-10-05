@@ -22,7 +22,7 @@
             </p>
             @{
                 var routeValue = new RouteValueDictionary();
-                routeValue.Add("key", "100000");
+                routeValue.Add("Id", Model.Id);
 
             }
             @using (Html.BeginForm("Update", "Education", routeValue))
@@ -88,8 +88,7 @@
                 </div>
                 <div class="row col-md-12">
                     <div class="form-group col-md-12">
-                        @*<button type="submit" class="btn btn-success">Kaydet</button>*@
-                        @Html.Button(new ButtonOptions(){Id = "btnSend",Name ="btnSend",Class = "btn btn-success",Type=ButtonType.submit,Text = "Kaydet"})
+                        @Html.Button1(new ButtonOptions(){Id = "btnSend",Name ="btnSend",Class = "btn btn-primary",Type=ButtonType.submit,Text = "Kaydet"})
                     </div>
                 </div>
             }

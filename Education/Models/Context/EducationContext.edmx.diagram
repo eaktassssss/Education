@@ -15,6 +15,9 @@
         <EntityTypeShape EntityType="EducationModel.Teacher" Width="1.5" PointX="7.625" PointY="4" />
         <AssociationConnector Association="EducationModel.FK_Table_1_Days" />
         <AssociationConnector Association="EducationModel.FK_Table_1_Lessons" />
+        <EntityTypeShape EntityType="EducationModel.Category" Width="1.5" PointX="7.375" PointY="1" />
+        <EntityTypeShape EntityType="EducationModel.Product" Width="1.5" PointX="9.625" PointY="0.875" />
+        <AssociationConnector Association="EducationModel.FK_Products_Categories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
